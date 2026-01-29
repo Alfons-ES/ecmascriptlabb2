@@ -23,26 +23,37 @@ async function read() {
 function write(data) {
     const outputEl = document.querySelector("#output");
 
-    outputEl.innerHTML = `
+    let tempTable = `
     <h1>Webbutveckling - ramschema</h1>
-    <table>
+    <input type="search" id="search" placeholder="Sök kurs"/>
+    <table border="1" style="border-collapse: collapse; width: 100%;">
     <thead>
+    <tr style="">
+    <th><a href="">Kurskod</a></th>
+    <th><a href="">Namn</a></th>
+    <th><a href="">Progression</a></th>
+    <th><a href="">Kursplan</a></th>
+    </tr>
     </thead>
-    <tbody>`
+    <tbody>
+    `;
 
     data.forEach(course => {
-        outputEl.innerHTML += `
+        tempTable += `
         <tr>
         <td>${course.code}</td>
         <td>${course.coursename}</td>
         <td>${course.progression}</td>
-        <td><a href="${course.syllabus}" target="_blank">Kursplan</a></td>
+        <td><a href="${course.syllabus}" target="_blank"><button>𓂃🖊</button></a></td>
         </tr>
-    `
+    `;
     });
 
-    outputEl.innerHTML += `
+    tempTable += `
     </tbody>
-    </table>`
+    </table>
+    `;
+
+    outputEl.innerHTML = tempTable;
 
 }
