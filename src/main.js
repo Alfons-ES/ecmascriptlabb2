@@ -56,6 +56,25 @@ function write(data) {
 
     outputEl.innerHTML = tempTable;
 
+    document.querySelectorAll("thead a[data-col]").forEach(a => {
+        a.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            const column = a.getAttribute("data-col");
+
+            const sorted = [...data].sort((a, b) => {
+                let valueA = a[column];
+                let valueB = b[column];
+
+                if (valueA < valueB) return -1;
+                if (valueA > valueB) return 1;
+                return 0;
+            });
+
+            write(sorted);
+        });
+    });
+
 }
 
 function search(courses) {
@@ -79,28 +98,6 @@ function search(courses) {
 }
 
 function sort(all) {
-    const click = document.querySelectorAll("thead a[data-col]");
-
-    click.forEach(a => {
-        a.addEventListener("click", function (event) {
-            const column = a.getAttribute("data-col");
-
-            const sorted = [...all].sort(function (a, b) {
-
-                let valueA = a[column];
-                let valueB = b[column];
 
 
-                if (typeof valueA === "string") valueA = valueA.toLowerCase();
-                if (typeof valueB === "string") valueB = valueB.toLowerCase();
-
-                if (valueA < valueB) return -1;
-                if (valueA > valueB) return 1;
-                return 0;
-            });
-
-            write(sorted);
-        });
-
-    });
 }
