@@ -13,7 +13,8 @@ async function read() {
     try {
         const data = await getRamschema();
         console.log(data);
-        write(data);
+        write(data); //skriv ut allt
+        addSearchListener(data); //sökfunktion
     } catch (error) {
         console.error("kan inte: ", error);
     }
@@ -24,8 +25,6 @@ function write(data) {
     const outputEl = document.querySelector("#output");
 
     let tempTable = `
-    <h1>Webbutveckling - ramschema</h1>
-    <input type="search" id="search" placeholder="Sök kurs"/>
     <table border="1" style="border-collapse: collapse; width: 100%;">
     <thead>
     <tr style="">
@@ -35,7 +34,7 @@ function write(data) {
     <th><a href="">Kursplan</a></th>
     </tr>
     </thead>
-    <tbody>
+    <tbody id="table">
     `;
 
     data.forEach(course => {
@@ -56,4 +55,18 @@ function write(data) {
 
     outputEl.innerHTML = tempTable;
 
+}
+
+function addSearchListener(courses) {
+    const search = document.querySelector("#search");
+
+    search.addEventListener("input", () => {
+        const searchText = search.value.toLowerCase().trim();
+
+        const result = searchText
+            ? courses.filter(c => c.coursename.toLowerCase().includes(searchText))
+            : courses;
+
+        write(result);
+    })
 }
