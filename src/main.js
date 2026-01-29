@@ -15,6 +15,7 @@ async function read() {
         console.log(data);
         write(data); //skriv ut allt
         search(data); //sökfunktion
+        sort(data); //sortering
     } catch (error) {
         console.error("kan inte: ", error);
     }
@@ -28,10 +29,10 @@ function write(data) {
     <table border="1" style="border-collapse: collapse; width: 100%;">
     <thead>
     <tr style="">
-    <th><a href="">Kurskod</a></th>
-    <th><a href="">Namn</a></th>
-    <th><a href="">Progression</a></th>
-    <th><a href="">Kursplan</a></th>
+    <th><a href="#" data-col="code">Kurskod</a></th>
+    <th><a href="#" data-col="coursename">Namn</a></th>
+    <th><a href="#" data-col="progression">Progression</a></th>
+    <th><a href="#" data-col="syllabus">Kursplan</a></th>
     </tr>
     </thead>
     <tbody id="table">
@@ -40,9 +41,9 @@ function write(data) {
     data.forEach(course => {
         tempTable += `
         <tr>
-        <td>${course.code}</td>
+        <td id="center">${course.code}</td>
         <td>${course.coursename}</td>
-        <td>${course.progression}</td>
+        <td id="center">${course.progression}</td>
         <td><a href="${course.syllabus}" target="_blank"><button>𓂃🖊</button></a></td>
         </tr>
     `;
@@ -75,4 +76,31 @@ function search(courses) {
 
         write(result);
     })
+}
+
+function sort(all) {
+    const click = document.querySelectorAll("thead a[data-col]");
+
+    click.forEach(a => {
+        a.addEventListener("click", function (event) {
+            const column = a.getAttribute("data-col");
+
+            const sorted = [...all].sort(function (a, b) {
+
+                let valueA = a[column];
+                let valueB = b[column];
+
+
+                if (typeof valueA === "string") valueA = valueA.toLowerCase();
+                if (typeof valueB === "string") valueB = valueB.toLowerCase();
+
+                if (valueA < valueB) return -1;
+                if (valueA > valueB) return 1;
+                return 0;
+            });
+
+            write(sorted);
+        });
+
+    });
 }
