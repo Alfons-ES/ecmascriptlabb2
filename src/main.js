@@ -15,12 +15,13 @@ async function read() {
         console.log(data);
         write(data); //skriv ut allt
         search(data); //sökfunktion
-        sort(data); //sortering
     } catch (error) {
         console.error("kan inte: ", error);
     }
 
 }
+
+let sortDirection = "asc";
 
 function write(data) {
     const outputEl = document.querySelector("#output");
@@ -56,18 +57,47 @@ function write(data) {
 
     outputEl.innerHTML = tempTable;
 
+
+    //sortering
+
     document.querySelectorAll("thead a[data-col]").forEach(a => {
+
         a.addEventListener("click", function (event) {
             event.preventDefault();
 
             const column = a.getAttribute("data-col");
 
+            let direction = "asc";
+
+
+            if (sortDirection === "asc") {
+                direction = "asc";
+                sortDirection = "desc";
+            } else {
+                direction = "desc";
+                sortDirection = "asc";
+            }
+
+            a.setAttribute("data-dir", direction);
+
             const sorted = [...data].sort((a, b) => {
                 let valueA = a[column];
                 let valueB = b[column];
 
-                if (valueA < valueB) return -1;
-                if (valueA > valueB) return 1;
+                if (valueA < valueB) {
+                    if (direction === "asc") {
+                        return -1;
+                    } else {
+                        return 1;
+                    }
+                }
+                if (valueA > valueB) {
+                    if (direction === "asc") {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
+                }
                 return 0;
             });
 
@@ -95,9 +125,4 @@ function search(courses) {
 
         write(result);
     })
-}
-
-function sort(all) {
-
-
 }
