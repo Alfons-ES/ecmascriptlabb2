@@ -21,7 +21,8 @@ async function read() {
 
 }
 
-let sortDirection = "asc";
+let toggleDirection = 0;
+let direction = "asc";
 
 function write(data) {
     const outputEl = document.querySelector("#output");
@@ -60,22 +61,21 @@ function write(data) {
 
     //sortering
 
-    document.querySelectorAll("thead a[data-col]").forEach(a => {
+    document.querySelectorAll("[data-col]").forEach(a => {
 
         a.addEventListener("click", function (event) {
             event.preventDefault();
 
             const column = a.getAttribute("data-col");
 
-            let direction = "asc";
 
 
-            if (sortDirection === "asc") {
+            if (toggleDirection == 0) {
                 direction = "asc";
-                sortDirection = "desc";
+                toggleDirection = 1;
             } else {
                 direction = "desc";
-                sortDirection = "asc";
+                toggleDirection = 0;
             }
 
             a.setAttribute("data-dir", direction);
