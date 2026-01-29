@@ -46,7 +46,7 @@ function write(data) {
         <td id="center">${course.code}</td>
         <td>${course.coursename}</td>
         <td id="center">${course.progression}</td>
-        <td><a href="${course.syllabus}" target="_blank"><button>𓂃🖊</button></a></td>
+        <td id="center"><a href="${course.syllabus}" target="_blank"><button>𓂃🖊</button></a></td>
         </tr>
     `;
     });
