@@ -68,8 +68,6 @@ function write(data) {
 
             const column = a.getAttribute("data-col");
 
-
-
             if (toggleDirection == 0) {
                 direction = "asc";
                 toggleDirection = 1;
@@ -77,8 +75,6 @@ function write(data) {
                 direction = "desc";
                 toggleDirection = 0;
             }
-
-            a.setAttribute("data-dir", direction);
 
             const sorted = [...data].sort((a, b) => {
                 let valueA = a[column];
