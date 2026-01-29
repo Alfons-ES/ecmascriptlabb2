@@ -64,8 +64,13 @@ function addSearchListener(courses) {
         const searchText = search.value.toLowerCase().trim();
 
         const result = searchText
-            ? courses.filter(c => c.coursename.toLowerCase().includes(searchText))
+            ? courses.filter(
+                c => c.coursename.toLowerCase().includes(searchText) ||
+                    c.code.toLowerCase().includes(searchText)
+            )
             : courses;
+
+        //om fältet är tomt visas alla kurser, om någonting är i inputfältet visas alla kurser som har den bokstaven i namnet ELLER i kurskoden.
 
         write(result);
     })
