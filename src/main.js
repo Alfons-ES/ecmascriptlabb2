@@ -14,7 +14,7 @@ async function read() {
         const data = await getRamschema();
         console.log(data);
         write(data); //skriv ut allt
-        addSearchListener(data); //sökfunktion
+        search(data); //sökfunktion
     } catch (error) {
         console.error("kan inte: ", error);
     }
@@ -57,7 +57,7 @@ function write(data) {
 
 }
 
-function addSearchListener(courses) {
+function search(courses) {
     const search = document.querySelector("#search");
 
     search.addEventListener("input", () => {
@@ -65,7 +65,8 @@ function addSearchListener(courses) {
 
         const result = searchText
             ? courses.filter(
-                c => c.coursename.toLowerCase().includes(searchText) ||
+                c =>
+                    c.coursename.toLowerCase().includes(searchText) ||
                     c.code.toLowerCase().includes(searchText)
             )
             : courses;
