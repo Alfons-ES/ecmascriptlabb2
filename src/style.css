@@ -52,6 +52,11 @@ input {
     width: 30%;
 }
 
+button {
+    background-color: white;
+    border: 1 solid black;
+}
+
 @media (max-width: 768px) {
     body {
         max-width: 100%;
@@ -65,7 +70,6 @@ input {
         font-size: 14px;
     }
 
-    th {}
 
     a {
         font-size: 14px;

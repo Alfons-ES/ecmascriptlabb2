@@ -3,9 +3,13 @@ read()
 
 async function getRamschema() {
     const response = await fetch('https://webbutveckling.miun.se/files/ramschema.json');
-    const data = await response.json();
+    try {
+        const data = await response.json();
 
-    return data;
+        return data;
+    } catch (error) {
+        console.error("fetching fail: ", error);
+    }
 
 }
 
