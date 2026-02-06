@@ -126,3 +126,22 @@ function search(courses) {
         write(result);
     })
 }
+
+
+document.getElementById("mode").addEventListener("click", () => {
+    //nattläge
+    console.log("klickat")
+
+    const link = document.getElementById("stylesheet");
+
+    const toggle = link.href.includes("dark");
+
+    if (toggle) {
+        link.href = "/src/style.scss";
+        document.getElementById("mode").innerHTML = '<img src="/images/day.png">'
+
+    } else {
+        link.href = "/src/styledark.scss";
+        document.getElementById("mode").innerHTML = '<img src="/images/night.png">'
+    }
+});

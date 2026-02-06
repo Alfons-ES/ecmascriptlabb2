@@ -1,10 +1,10 @@
 @use 'sass:color';
-$primaryC: rgb(249, 249, 249);
-$secondaryC: rgb(255, 141, 141);
-$textPrimaryC: color.scale($primaryC, $lightness: -90%);
+$primaryC: rgb(12, 12, 12);
+$secondaryC: rgb(38, 21, 21);
+$textPrimaryC: color.scale($primaryC, $lightness: +80%);
 
 body {
-    background-color: color.adjust($primaryC, $lightness: +10%);
+    background-color: color.adjust($primaryC, $lightness: -10%);
     margin: 0;
 
     #main {
