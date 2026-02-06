@@ -4,9 +4,23 @@ $secondaryC: rgb(255, 141, 141);
 $textPrimaryC: color.scale($primaryC, $lightness: -90%);
 
 body {
-    background-color: $primaryC;
-    color: $textPrimaryC;
-    margin: 0 50px;
+    background-color: color.adjust($primaryC, $lightness: +10%);
+    margin: 0;
+
+    #main {
+        background-color: $primaryC;
+        color: $textPrimaryC;
+        margin: 0 20%;
+    }
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+}
+
+h1 {
+    text-align: center;
 }
 
 th {
@@ -19,6 +33,11 @@ th {
 
 td {
     background-color: color.scale($primaryC, $saturation: 100%);
+
+}
+
+#center {
+    text-align: center;
 }
 
 a {
@@ -26,11 +45,13 @@ a {
 }
 
 header {
-    text-align: center;
 
     background-color: $secondaryC;
 
-    display: flex;
+    #menu {
+        text-align: center;
+        display: flex;
+    }
 
     a {
         font-size: 20px;
@@ -39,9 +60,45 @@ header {
         margin: 0 auto;
     }
 
+    #mobile {
+        display: none;
+    }
+
 
 }
 
 a:hover {
     background-color: color.adjust($secondaryC, $lightness: -10%);
+}
+
+img {
+    width: 100%;
+}
+
+@media (max-width: 699px) {
+    body {
+        font-size: 14px;
+
+        #main {
+            margin: 0;
+        }
+
+    }
+
+    header {
+
+        padding: 10px;
+
+        #menu {
+            display: none;
+        }
+
+        #mobile {
+            display: inline;
+
+        }
+
+
+    }
+
 }
