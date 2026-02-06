@@ -1,0 +1,13 @@
+@use 'sass:color';
+$primaryC: rgb(62, 128, 12);
+$secondaryC: color.complement($primaryC);
+$brightPrimaryC: color.scale($primaryC, $lightness: 50%);
+
+body {
+    background-color: $primaryC;
+    color: $brightPrimaryC;
+}
+
+li {
+    background-color: $secondaryC;
+}
