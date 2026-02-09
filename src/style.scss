@@ -1,7 +1,10 @@
 @use 'sass:color';
 @use "./colors";
+@use "./base";
+@use "./layout";
 
-body {
+body.light-mode {
+
     background-color: color.adjust(colors.$primaryC, $lightness: +10%);
     margin: 0;
 
@@ -10,128 +13,266 @@ body {
         color: colors.$textPrimaryC;
         margin: 0 20%;
     }
-}
 
-button {
-    background-color: transparent;
-    border: 0;
-}
-
-h1 {
-    @extend #center;
-    color: colors.$secondaryCdark;
-}
-
-th {
-    background-color: colors.$secondaryC;
 
     button {
-        background-color: white;
+        background-color: transparent;
+        border: 0;
     }
-}
 
-td {
-    background-color: color.scale(colors.$primaryC, $saturation: 100%);
+    h1 {
+        @extend #center;
+        color: colors.$secondaryCdark;
+    }
 
-}
+    th {
+        background-color: colors.$secondaryC;
 
-#center {
-    text-align: center;
-}
+        button {
+            background-color: white;
+        }
+    }
 
-a {
-    color: colors.$textPrimaryC;
-}
+    td {
+        background-color: color.scale(colors.$primaryC, $saturation: 100%);
 
-header {
+    }
 
-    background-color: colors.$secondaryC;
-
-    #menu {
+    #center {
         text-align: center;
-        display: flex;
-        margin: 0 70px;
     }
 
     a {
-        font-size: 20px;
-        text-decoration: none;
-        padding: 10px;
-        margin: 0 auto;
-    }
-
-    #mobile {
-        display: none;
-    }
-
-
-}
-
-input {
-    border: 1 solid black;
-    padding: 10px;
-}
-
-a:hover {
-    background-color: color.adjust(colors.$secondaryC, $lightness: -10%);
-}
-
-@mixin img($size, $radius: 0, $toggle) {
-    width: $size;
-    height: $size;
-    border-radius: $radius;
-
-    @if $toggle {
-        &:hover {
-            transform: scale(1.25);
-            transition: transform 0.15s ease;
-        }
-    }
-}
-
-img {
-    @include img(49.5%, $radius: 10%, $toggle: false);
-}
-
-.modetoggle {
-    @include img(100%, $toggle: true);
-    cursor: pointer;
-}
-
-#eval {
-    padding: 8px;
-}
-
-#mode {
-    position: absolute;
-    right: 0;
-    width: 50px;
-}
-
-@media (max-width: 699px) {
-    body {
-        font-size: 14px;
-
-        #main {
-            margin: 0;
-        }
-
+        color: colors.$textPrimaryC;
     }
 
     header {
 
-        padding: 10px;
+        background-color: colors.$secondaryC;
 
         #menu {
-            display: none;
+            text-align: center;
+            display: flex;
+            margin: 0 70px;
+        }
+
+        a {
+            font-size: 20px;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 auto;
         }
 
         #mobile {
-            display: inline;
-
+            display: none;
         }
 
 
     }
 
+    input {
+        border: 1 solid black;
+        padding: 10px;
+    }
+
+    a:hover {
+        background-color: color.adjust(colors.$secondaryC, $lightness: -10%);
+    }
+
+    @mixin img($size, $radius: 0, $toggle) {
+        width: $size;
+        height: $size;
+        border-radius: $radius;
+
+        @if $toggle {
+            &:hover {
+                transform: scale(1.25);
+                transition: transform 0.15s ease;
+            }
+        }
+    }
+
+    img {
+        @include img(49.5%, $radius: 10%, $toggle: false);
+    }
+
+    #mode {
+        @include img(50px, $toggle: true);
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+    }
+
+    #eval {
+        padding: 8px;
+    }
+
+
+    @media (max-width: 699px) {
+        body {
+            font-size: 14px;
+
+            #main {
+                margin: 0;
+            }
+
+        }
+
+        header {
+
+            padding: 10px;
+
+            #menu {
+                display: none;
+            }
+
+            #mobile {
+                display: inline;
+
+            }
+
+
+        }
+
+    }
+}
+
+
+body.dark-mode {
+
+
+    background-color: color.adjust(colors.$primaryCdark, $lightness: -10%);
+    margin: 0;
+
+    #main {
+        background-color: colors.$primaryCdark;
+        color: colors.$textPrimaryCdark;
+        margin: 0 20%;
+    }
+
+
+    button {
+        background-color: transparent;
+        border: 0;
+    }
+
+
+    th {
+        background-color: colors.$secondaryCdark;
+
+        button {
+            background-color: white;
+        }
+    }
+
+    td {
+        background-color: color.scale(colors.$primaryCdark, $saturation: 100%);
+
+    }
+
+    #center {
+        text-align: center;
+    }
+
+    h1 {
+        @extend #center;
+        color: colors.$secondaryC;
+    }
+
+
+    a {
+        color: colors.$textPrimaryCdark;
+    }
+
+    header {
+
+        background-color: colors.$secondaryCdark;
+
+        #menu {
+            text-align: center;
+            display: flex;
+            margin: 0 70px;
+        }
+
+        a {
+            font-size: 20px;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 auto;
+        }
+
+        #mobile {
+            display: none;
+        }
+
+
+    }
+
+    input {
+        border: 0;
+        padding: 10px;
+        background: black;
+        color: white;
+    }
+
+    #eval {
+        padding: 8px;
+    }
+
+
+    a:hover {
+        background-color: color.adjust(colors.$secondaryCdark, $lightness: -10%);
+    }
+
+    @mixin img($size, $radius: 0, $toggle) {
+        width: $size;
+        height: $size;
+        border-radius: $radius;
+
+        @if $toggle {
+            &:hover {
+                transform: scale(1.25);
+                transition: transform 0.15s ease;
+            }
+        }
+    }
+
+    img {
+        @include img(49.5%, $radius: 10%, $toggle: false);
+    }
+
+    #mode {
+        @include img(50px, $toggle: true);
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+    }
+
+    @media (max-width: 699px) {
+        body {
+            font-size: 14px;
+
+            #main {
+                margin: 0;
+            }
+
+        }
+
+        header {
+
+            padding: 10px;
+
+            #menu {
+                display: none;
+            }
+
+            #mobile {
+                display: inline;
+
+            }
+
+
+        }
+
+    }
 }
