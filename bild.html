@@ -10,25 +10,26 @@
 
 <body>
     <button id="mode"><img src="/images/day.png"></button>
+
+    <header>
+        <div id="menu">
+            <a href="index">Ramschema</a>
+            <a href="scss">SASS</a>
+            <a href="bild">Bilder</a>
+            <a href="#">Något</a>
+            <a href="#">Annat</a>
+        </div>
+        <div id="mobile">
+            <a href="#">=</a>
+        </div>
+    </header>
     <div id="main">
-        <header>
-            <div id="menu">
-                <a href="index">Ramschema</a>
-                <a href="scss">SASS</a>
-                <a href="bild">Bilder</a>
-                <a href="#">Något</a>
-                <a href="#">Annat</a>
-            </div>
-            <div id="mobile">
-                <a href="#">=</a>
-            </div>
-        </header>
         <h1>Två bilder</h1>
-        <picture>
+        <picture class="profileImg">
             <source srcset="/images/bild1.webp">
             <img src="/images/bild1.jpg">
         </picture>
-        <picture>
+        <picture class="profileImg">
             <source srcset="/images/bild2.webp">
             <img src="/images/bild2.jpg">
         </picture>

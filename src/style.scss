@@ -1,15 +1,13 @@
 @use 'sass:color';
-$primaryC: rgb(249, 249, 249);
-$secondaryC: rgb(255, 141, 141);
-$textPrimaryC: color.scale($primaryC, $lightness: -90%);
+@use "./colors";
 
 body {
-    background-color: color.adjust($primaryC, $lightness: +10%);
+    background-color: color.adjust(colors.$primaryC, $lightness: +10%);
     margin: 0;
 
     #main {
-        background-color: $primaryC;
-        color: $textPrimaryC;
+        background-color: colors.$primaryC;
+        color: colors.$textPrimaryC;
         margin: 0 20%;
     }
 }
@@ -20,11 +18,12 @@ button {
 }
 
 h1 {
-    text-align: center;
+    @extend #center;
+    color: colors.$secondaryCdark;
 }
 
 th {
-    background-color: $secondaryC;
+    background-color: colors.$secondaryC;
 
     button {
         background-color: white;
@@ -32,7 +31,7 @@ th {
 }
 
 td {
-    background-color: color.scale($primaryC, $saturation: 100%);
+    background-color: color.scale(colors.$primaryC, $saturation: 100%);
 
 }
 
@@ -41,16 +40,17 @@ td {
 }
 
 a {
-    color: $textPrimaryC;
+    color: colors.$textPrimaryC;
 }
 
 header {
 
-    background-color: $secondaryC;
+    background-color: colors.$secondaryC;
 
     #menu {
         text-align: center;
         display: flex;
+        margin: 0 70px;
     }
 
     a {
@@ -67,12 +67,39 @@ header {
 
 }
 
+input {
+    border: 1 solid black;
+    padding: 10px;
+}
+
 a:hover {
-    background-color: color.adjust($secondaryC, $lightness: -10%);
+    background-color: color.adjust(colors.$secondaryC, $lightness: -10%);
+}
+
+@mixin img($size, $radius: 0, $toggle) {
+    width: $size;
+    height: $size;
+    border-radius: $radius;
+
+    @if $toggle {
+        &:hover {
+            transform: scale(1.25);
+            transition: transform 0.15s ease;
+        }
+    }
 }
 
 img {
-    width: 100%;
+    @include img(49.5%, $radius: 10%, $toggle: false);
+}
+
+.modetoggle {
+    @include img(100%, $toggle: true);
+    cursor: pointer;
+}
+
+#eval {
+    padding: 8px;
 }
 
 #mode {

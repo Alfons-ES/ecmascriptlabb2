@@ -1,0 +1,8 @@
+@use 'sass:color';
+$primaryC: rgb(249, 249, 249);
+$secondaryC: rgb(255, 141, 141);
+$textPrimaryC: color.scale($primaryC, $lightness: -90%);
+
+$primaryCdark: rgb(12, 12, 12);
+$secondaryCdark: rgb(38, 21, 21);
+$textPrimaryCdark: color.scale($primaryCdark, $lightness: +80%);

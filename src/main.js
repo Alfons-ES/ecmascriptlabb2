@@ -127,21 +127,34 @@ function search(courses) {
     })
 }
 
-
-document.getElementById("mode").addEventListener("click", () => {
-    //nattläge
-    console.log("klickat")
-
+document.addEventListener("DOMContentLoaded", () => {
     const link = document.getElementById("stylesheet");
+    const mode = document.getElementById("mode");
 
-    const toggle = link.href.includes("dark");
+    //när man klickar på knappen så togglar det
+    mode.addEventListener("click", () => {
+        const doDark = !link.href.includes("dark");
 
-    if (toggle) {
-        link.href = "/src/style.scss";
-        document.getElementById("mode").innerHTML = '<img src="/images/day.png">'
+        if (!doDark) {
+            link.href = "/src/style.scss";
+            mode.innerHTML = '<img src="/images/day.png" class="modetoggle">'
 
-    } else {
+        } else {
+            link.href = "/src/styledark.scss";
+            mode.innerHTML = '<img src="/images/night.png" class="modetoggle">'
+        }
+
+        //och sparas till localstorage  
+        localStorage.setItem("darkMode", doDark);
+    });
+
+    //frågar local storage om vi har darkmode kvar eller inte
+    if (localStorage.getItem("darkMode") === "true") {
         link.href = "/src/styledark.scss";
-        document.getElementById("mode").innerHTML = '<img src="/images/night.png">'
+        mode.innerHTML = '<img src="/images/night.png" class="modetoggle" alt="Night">';
+    } else {
+        link.href = "/src/style.scss";
+        mode.innerHTML = '<img src="/images/day.png" class="modetoggle" alt="Day">';
     }
+
 });

@@ -1,15 +1,13 @@
 @use 'sass:color';
-$primaryC: rgb(12, 12, 12);
-$secondaryC: rgb(38, 21, 21);
-$textPrimaryC: color.scale($primaryC, $lightness: +80%);
+@use "./colors";
 
 body {
-    background-color: color.adjust($primaryC, $lightness: -10%);
+    background-color: color.adjust(colors.$primaryCdark, $lightness: -10%);
     margin: 0;
 
     #main {
-        background-color: $primaryC;
-        color: $textPrimaryC;
+        background-color: colors.$primaryCdark;
+        color: colors.$textPrimaryCdark;
         margin: 0 20%;
     }
 }
@@ -19,12 +17,9 @@ button {
     border: 0;
 }
 
-h1 {
-    text-align: center;
-}
 
 th {
-    background-color: $secondaryC;
+    background-color: colors.$secondaryCdark;
 
     button {
         background-color: white;
@@ -32,7 +27,7 @@ th {
 }
 
 td {
-    background-color: color.scale($primaryC, $saturation: 100%);
+    background-color: color.scale(colors.$primaryCdark, $saturation: 100%);
 
 }
 
@@ -40,13 +35,19 @@ td {
     text-align: center;
 }
 
+h1 {
+    @extend #center;
+    color: colors.$secondaryC;
+}
+
+
 a {
-    color: $textPrimaryC;
+    color: colors.$textPrimaryCdark;
 }
 
 header {
 
-    background-color: $secondaryC;
+    background-color: colors.$secondaryCdark;
 
     #menu {
         text-align: center;
@@ -67,12 +68,42 @@ header {
 
 }
 
+input {
+    border: 0;
+    padding: 10px;
+    background: black;
+    color: white;
+}
+
+#eval {
+    padding: 8px;
+}
+
+
 a:hover {
-    background-color: color.adjust($secondaryC, $lightness: -10%);
+    background-color: color.adjust(colors.$secondaryCdark, $lightness: -10%);
+}
+
+@mixin img($size, $radius: 0, $toggle) {
+    width: $size;
+    height: $size;
+    border-radius: $radius;
+
+    @if $toggle {
+        &:hover {
+            transform: scale(1.25);
+            transition: transform 0.15s ease;
+        }
+    }
 }
 
 img {
-    width: 100%;
+    @include img(49.5%, $radius: 10%, $toggle: false);
+}
+
+.modetoggle {
+    @include img(100%, $toggle: true);
+    cursor: pointer;
 }
 
 #mode {
