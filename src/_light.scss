@@ -43,13 +43,12 @@
     }
 }
 
-
-body.light-mode {
-    @include theme-light;
-}
-
 @media (prefers-color-scheme: light) {
     body {
         @include theme-light;
     }
+}
+
+body.light-mode {
+    @include theme-light;
 }
