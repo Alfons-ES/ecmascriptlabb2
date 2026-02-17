@@ -94,7 +94,7 @@ body.light-mode {
     }
 
     img {
-        @include img(49.5%, $radius: 10%, $toggle: false);
+        @include img(49%, $radius: 10%, $toggle: false);
     }
 
     #mode {
