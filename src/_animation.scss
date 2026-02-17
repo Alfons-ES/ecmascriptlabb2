@@ -1,30 +1,3 @@
-#text1 {
-    width: 100px;
-    color: Black;
-    background-color: white;
-    transition: width 4s, background-color 6s, transform 2s;
-}
-
-#text1:hover {
-    width: 100%;
-    background-color: rgb(26, 148, 51);
-    transform: skew(60deg, 0);
-}
-
-#btn1 {
-    padding: 50px;
-    background-color: rgb(194, 170, 16);
-    color: white;
-    border: 2px solid black;
-    border-radius: 30px;
-}
-
-#btn1:focus {
-    animation: spin 1.5s infinite;
-    animation-direction: alternate;
-    animation-timing-function: linear;
-}
-
 @keyframes spin {
     0% {
         transform: translate(0, 0);
@@ -47,26 +20,6 @@
     }
 }
 
-.starwars {
-    font-size: 48px;
-    line-height: 1.5;
-    text-align: center;
-    width: 80%;
-    animation: starwars 24s;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-    transform-origin: top center;
-    color: rgb(255, 200, 0);
-}
-
-#treD {
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    perspective: 300px;
-}
-
 @keyframes starwars {
     0% {
         transform: translateY(100vh) rotateX(40deg);
@@ -77,26 +30,4 @@
         transform: translateY(0vh) rotateX(40deg) scale(0, 0);
         opacity: 0;
     }
-}
-
-#btn2 {
-    background-color: rgb(255, 190, 190);
-    padding: 20px;
-    margin-left: 70%;
-    border: 2px solid white;
-    border-radius: 50%;
-}
-
-#btn2:hover {
-    transform: scale(1.25);
-    transition: transform 0.5s, background-color 1s;
-    background-color: orange;
-}
-
-#btn2:focus {
-    background-color: red;
-}
-
-#cat {
-    opacity: 0;
 }
