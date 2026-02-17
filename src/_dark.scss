@@ -1,0 +1,58 @@
+@use 'sass:color';
+@use "./colors";
+
+@mixin theme-dark {
+    background-color: color.adjust(colors.$primaryCdark, $lightness: -10%);
+
+    #main {
+        background-color: colors.$primaryCdark;
+        color: colors.$textPrimaryCdark;
+    }
+
+    h1 {
+        color: colors.$secondaryC;
+    }
+
+    th {
+        background-color: colors.$secondaryCdark;
+
+        button {
+            background-color: white;
+        }
+    }
+
+    td {
+        background-color: color.scale(colors.$primaryCdark, $saturation: 100%);
+    }
+
+    a {
+        color: colors.$textPrimaryCdark;
+    }
+
+    header {
+        background-color: colors.$secondaryCdark;
+    }
+
+    input {
+        border: 0;
+        padding: 10px;
+        background: black;
+        color: white;
+    }
+
+    a:hover {
+        background-color: color.adjust(colors.$secondaryCdark, $lightness: -10%);
+    }
+}
+
+
+@media (prefers-color-scheme: dark) {
+    body {
+        @include theme-dark;
+    }
+}
+
+
+body.dark-mode {
+    @include theme-dark;
+}

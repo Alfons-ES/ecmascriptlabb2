@@ -1,0 +1,55 @@
+@use 'sass:color';
+@use "./colors";
+
+@mixin theme-light {
+    background-color: color.adjust(colors.$primaryC, $lightness: +10%);
+
+    #main {
+        background-color: colors.$primaryC;
+        color: colors.$textPrimaryC;
+    }
+
+    h1 {
+        color: colors.$secondaryCdark;
+    }
+
+    th {
+        background-color: colors.$secondaryC;
+
+        button {
+            background-color: white;
+        }
+    }
+
+    td {
+        background-color: color.scale(colors.$primaryC, $saturation: 100%);
+    }
+
+    a {
+        color: colors.$textPrimaryC;
+    }
+
+    header {
+        background-color: colors.$secondaryC;
+    }
+
+    input {
+        border: 1px solid black;
+        padding: 10px;
+    }
+
+    a:hover {
+        background-color: color.adjust(colors.$secondaryC, $lightness: -10%);
+    }
+}
+
+
+body.light-mode {
+    @include theme-light;
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        @include theme-light;
+    }
+}
