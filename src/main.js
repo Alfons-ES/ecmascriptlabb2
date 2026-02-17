@@ -148,3 +148,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+
+
+//KATTVISARE :D
+
+const btn = document.getElementById('btn2');
+const catImg = document.getElementById('cat');
+
+btn.addEventListener('click', () => {
+    catImg.style.opacity = '1';
+});
