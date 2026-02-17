@@ -6,7 +6,8 @@ export default defineConfig({
             input: {
                 index: './index.html',
                 bild: './bild.html',
-                scss: './scss.html'
+                scss: './scss.html',
+                animering: './animering.html'
             }
         }
     }
