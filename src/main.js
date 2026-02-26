@@ -164,6 +164,7 @@ btn.addEventListener('click', () => {
 
 //chart
 const ctx = document.getElementById('kurser');
+const ctx2 = document.getElementById('program');
 
 readStats()
 
@@ -191,6 +192,7 @@ async function readStats() {
 }
 
 function calcDisplay(data) {
+    //top 6 kurser
     const top6 = data
         .filter(item => item.type === "Kurs")
         .map(item => ({
@@ -199,9 +201,10 @@ function calcDisplay(data) {
         }))
         .filter(item => !isNaN(item.sökande))
         .sort((a, b) => b.sökande - a.sökande)
-        .slice(0, 6);
+        .slice(0, 6);//filtret
 
-    new Chart(ctx, {
+
+    new Chart(ctx, {//display
         type: 'bar',
         data: {
             labels: top6.map(c => c.name),
@@ -228,13 +231,23 @@ function calcDisplay(data) {
                     }
                 }
             },
+            onResize: (chart, size) => {
+                const width = size.width;
+
+                if (width < 1000) {
+                    chart.options.scales.x.ticks.maxRotation = 90;
+                    chart.options.scales.x.ticks.minRotation = 90;
+                } else {
+                    chart.options.scales.x.ticks.maxRotation = 0;
+                    chart.options.scales.x.ticks.minRotation = 0;
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true,
                 },
                 x: {
                     ticks: {
-                        maxRotation: 0,
                         autoSkip: false,
                         font: { size: 9 }
                     }
@@ -243,6 +256,53 @@ function calcDisplay(data) {
 
         }
     });
+
+
+    const top5 = data
+        .filter(item => item.type === "Program")
+        .map(item => ({
+            name: item.name,
+            sökande: Number(item.applicantsTotal.trim())
+        }))
+        .filter(item => !isNaN(item.sökande))
+        .sort((a, b) => b.sökande - a.sökande)
+        .slice(0, 5);//filtret
+
+    new Chart(ctx2, {//display
+        type: 'pie',
+        data: {
+            labels: top5.map(c => c.name),
+            datasets: [{
+                label: '5 mest sökta program HT25',
+                data: top5.map(c => c.sökande),
+                borderWidth: 0,
+                backgroundColor: [
+                    'rgba(235, 54, 54, 0.9)',   // blue
+                    'rgba(255, 99, 234, 0.9)',   // red/pink
+                    'rgba(75, 108, 192, 0.9)',   // teal
+                    'rgba(255, 206, 86, 0.9)',   // yellow
+                    'rgba(41, 159, 41, 0.9)',  // purple
+                    'rgba(64, 255, 191, 0.9)'    // orange
+                ],
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        font: { size: 14 }
+                    }
+                }
+            },
+            scales: {
+
+            }
+
+        }
+    });
+
+
 
 
 }
