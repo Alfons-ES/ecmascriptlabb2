@@ -7,7 +7,9 @@ export default defineConfig({
                 index: './index.html',
                 bild: './bild.html',
                 scss: './scss.html',
-                animering: './animering.html'
+                animering: './animering.html',
+                diagram: './diagram.html',
+                karta: './karta.html'
             }
         }
     }
