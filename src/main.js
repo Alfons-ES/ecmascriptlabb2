@@ -1,6 +1,10 @@
 import Chart from 'chart.js/auto';
 read()
 
+/**
+ * hämtar kursramschemat med ajax anrop från miun
+ * @returns ramschemat
+ */
 async function getRamschema() {
     const response = await fetch('https://webbutveckling.miun.se/files/ramschema.json');
     try {
@@ -13,6 +17,9 @@ async function getRamschema() {
 
 }
 
+/**
+ * läser datan från getRamschema och kör write() & search()
+ */
 async function read() {
     try {
         const data = await getRamschema();
@@ -28,6 +35,10 @@ async function read() {
 let toggleDirection = 0;
 let direction = "asc";
 
+/**
+ * skapar table för att visa ramschemat
+ * @param {*} data - ramschemat
+ */
 function write(data) {
     const outputEl = document.querySelector("#output");
 
@@ -107,6 +118,10 @@ function write(data) {
 
 }
 
+/**
+ * initsierar sök och filtrering för kurser
+ * @param {*} courses - ramschemat
+ */
 function search(courses) {
     const search = document.querySelector("#search");
 
@@ -168,6 +183,10 @@ const ctx2 = document.getElementById('program');
 
 readStats()
 
+/**
+ * hämtar statistik från antagning ht25
+ * @returns statistik för antagning ht25
+ */
 async function getStats() {
     const response = await fetch('https://mallarmiun.github.io/Frontend-baserad-webbutveckling/Moment%205%20-%20Dynamiska%20webbplatser/statistik_sokande_ht25.json');
     try {
@@ -179,7 +198,9 @@ async function getStats() {
 
 }
 
-
+/**
+ * läser statistiken och startar calcDisplay()
+ */
 async function readStats() {
     try {
         const data = await getStats();
@@ -191,6 +212,10 @@ async function readStats() {
 
 }
 
+/**
+ * räknar ut top 6 kurser, top 5 program och renderar dessa på charts.
+ * @param {*} data - antagningsstatistik ht25 miun
+ */
 function calcDisplay(data) {
     //top 6 kurser
     const top6 = data
