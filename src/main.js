@@ -209,7 +209,7 @@ function calcDisplay(data) {
         data: {
             labels: top6.map(c => c.name),
             datasets: [{
-                label: '6 mest sökta kurserna HT25',
+                label: '',
                 data: top6.map(c => c.sökande),
                 borderWidth: 0,
                 backgroundColor: [
@@ -226,9 +226,7 @@ function calcDisplay(data) {
             maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    labels: {
-                        font: { size: 14 }
-                    }
+                    display: false
                 }
             },
             onResize: (chart, size) => {
@@ -273,7 +271,7 @@ function calcDisplay(data) {
         data: {
             labels: top5.map(c => c.name),
             datasets: [{
-                label: '5 mest sökta program HT25',
+                label: '',
                 data: top5.map(c => c.sökande),
                 borderWidth: 0,
                 backgroundColor: [
