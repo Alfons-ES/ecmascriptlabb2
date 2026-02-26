@@ -307,7 +307,7 @@ function calcDisplay(data) {
 //https://stackoverflow.com/questions/979256/sorting-an-array-of-objects-by-property-values
 //https://stackoverflow.com/questions/68093967/i-want-to-show-top-5-from-an-array-of-object
 //https://stackoverflow.com/questions/75839437/getting-top-5-objects-in-array-with-highest-value
-//Hade inte kunnat freebase detta själv så jag länkar koden jag "inspirerades" utav här.
+//koden jag "inspirerades" utav
 
 
 
