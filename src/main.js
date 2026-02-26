@@ -162,6 +162,8 @@ btn.addEventListener('click', () => {
 
 
 
+//chart
+const ctx = document.getElementById('kurser');
 
 readStats()
 
@@ -181,14 +183,14 @@ async function readStats() {
     try {
         const data = await getStats();
         console.log(data);
-        calculate(data); //räkna på vad som ska visas
+        calcDisplay(data); //räkna på vad som ska visas
     } catch (error) {
         console.error("kan inte: ", error);
     }
 
 }
 
-function calculate(data) {
+function calcDisplay(data) {
     const top6 = data
         .filter(item => item.type === "Kurs")
         .map(item => ({
@@ -199,12 +201,56 @@ function calculate(data) {
         .sort((a, b) => b.sökande - a.sökande)
         .slice(0, 6);
 
-    console.log("Topp 6 kurser HT25 (totala sökande):");
-    top6.forEach((c, i) => {
-        console.log(`${i + 1}. ${c.sökande} st – ${c.name}`);
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: top6.map(c => c.name),
+            datasets: [{
+                label: '6 mest sökta kurserna HT25',
+                data: top6.map(c => c.sökande),
+                borderWidth: 0,
+                backgroundColor: [
+                    'rgba(235, 54, 54, 0.9)',   // blue
+                    'rgba(255, 99, 234, 0.9)',   // red/pink
+                    'rgba(75, 108, 192, 0.9)',   // teal
+                    'rgba(255, 206, 86, 0.9)',   // yellow
+                    'rgba(41, 159, 41, 0.9)',  // purple
+                    'rgba(64, 255, 191, 0.9)'    // orange
+                ],
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        font: { size: 14 }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+                x: {
+                    ticks: {
+                        maxRotation: 0,
+                        autoSkip: false,
+                        font: { size: 9 }
+                    }
+                }
+            }
+
+        }
     });
+
+
 }
 //https://stackoverflow.com/questions/979256/sorting-an-array-of-objects-by-property-values
 //https://stackoverflow.com/questions/68093967/i-want-to-show-top-5-from-an-array-of-object
 //https://stackoverflow.com/questions/75839437/getting-top-5-objects-in-array-with-highest-value
 //Hade inte kunnat freebase detta själv så jag länkar koden jag "inspirerades" utav här.
+
+
+
+
