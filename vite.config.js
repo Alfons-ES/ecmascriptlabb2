@@ -9,7 +9,8 @@ export default defineConfig({
                 scss: './scss.html',
                 animering: './animering.html',
                 diagram: './diagram.html',
-                karta: './karta.html'
+                karta: './karta.html',
+                main: './main.html'
             }
         }
     }
