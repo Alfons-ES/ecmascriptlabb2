@@ -337,9 +337,49 @@ function calcDisplay(data) {
 
 
 
-var map = L.map('map').setView([51.505, -0.09], 13);
+var map = L.map('map').setView([78.224914, 15.627634], 8);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
+
+
+let marker = null;
+
+/**
+ * tar vad användaren sökt på, kör nominatim med namnet för att hitta platsen - använder nomanitams angivna latitude och longitude för att ställa kartan på den platsen.
+ * @param {*} location - användarens sökning
+ */
+async function findLocation(location) {
+
+    try {
+        const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${location}&format=json`);
+        const data = await response.json();
+
+        if (data) {
+            const latitude = parseFloat(data[0].lat);
+            const longitude = parseFloat(data[0].lon);
+
+            map.setView([latitude, longitude], 12);
+
+            marker = L.marker([latitude, longitude])
+                .addTo(map)
+                .bindPopup(`<b>${data[0].display_name}</b>`)
+                .openPopup();
+        } else {
+            alert('Hittade inte platsen, var mer specifik!');
+        }
+    } catch (error) {
+        console.error('Error fetching location:', error);
+    }
+}
+
+
+document.getElementById('inputLocation').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        const location = this.value;
+        findLocation(location);
+    }
+});
