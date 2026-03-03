@@ -10,7 +10,8 @@ export default defineConfig({
                 animering: './animering.html',
                 diagram: './diagram.html',
                 karta: './karta.html',
-                main: './main.html'
+                main: './main.html',
+                global: './global.html'
             }
         }
     }
